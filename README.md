@@ -26,7 +26,7 @@ begrenzt, und eine Kampagne kann einzelne Clips ablehnen. Quellen:
 ## Voraussetzungen
 
 Am besten mit **Claude Code**, weil es auf deinem Rechner `yt-dlp` und `ffmpeg` ausführen kann. Im normalen
-Chat laufen nur die Skills ohne Dateiarbeit (Kampagnen, Streams, Hook, Caption, Postplan, Tracker).
+Chat laufen nur die Skills ohne Dateiarbeit (Kampagnen, Streams, Hook, Caption, Kanal und Uploadplan, Tracker).
 
 | Was | Wofür | Pflicht |
 | --- | --- | --- |
@@ -105,7 +105,7 @@ braucht einen Claude-Zugang mit Websuche.
 | `/caption-und-hashtags` | Caption | Titel, Caption und Hashtags je Plattform, mit Pflicht-Tags der Kampagne. |
 | `/regel-check` | Regel-Prüfer | Prüft jeden Clip gegen die Kampagnenregeln, bevor er rausgeht. |
 | `/trend-radar` | Trend-Radar | Beobachtet, welche GTA-6-Momente anziehen, und meldet Momente, zu denen er noch keine Clips findet, mit Stream-Link und Zeitstempel. Sagt offen, was er messen kann und was nicht. |
-| `/post-plan` | Postplan | Plan, wann welcher Clip auf welcher Plattform und welchem Konto rausgeht, ohne Spam-Regeln zu verletzen. |
+| `/kanal-bauer` | Kanal-Bauer | Baut deinen YouTube-Shorts-Kanal auf (Name, Beschreibung, Banner-Text, Playlists) und plant, wann welcher Clip wo rausgeht, ohne Spam-Regeln zu verletzen. |
 | `/auszahlungs-tracker` | Tracker | Tabelle je Clip mit Kampagne, Aufrufen, Satz und erwarteter Auszahlung. Rechnet nur mit Zahlen, die du einträgst. |
 
 ## Beispielablauf
@@ -117,7 +117,7 @@ braucht einen Claude-Zugang mit Websuche.
 5. `/clip-schneider`, dann `/untertitel`: Aus dem Moment wird ein 9:16-Clip mit Untertiteln.
 6. `/hook-schreiber` und `/caption-und-hashtags`: Du wählst den Hook, dazu kommen die Texte je Plattform.
 7. `/regel-check`: Der Clip geht gegen den Kampagnen-Brief. Erst bei `bereit` weiter.
-8. `/post-plan`: Du legst fest, wann was rausgeht. Posten und Einreichen machst du selbst.
+8. `/kanal-bauer`: Er baut deinen Kanal auf und legt fest, wann was rausgeht. Posten und Einreichen machst du selbst.
 9. `/auszahlungs-tracker`: Du trägst die echten Aufrufe ein, er rechnet.
 
 Alles liegt im Ordner `gta6/` deines Projekts:
@@ -125,7 +125,7 @@ Alles liegt im Ordner `gta6/` deines Projekts:
 ```
 gta6/
 ├── kampagnen.md  ·  streams.md  ·  momente.md  ·  radar.md
-├── postplan.md  ·  tracker.csv
+├── kanal.md  ·  tracker.csv
 ├── quelle/                      (geladene Abschnitte und Untertitel)
 └── clips/
     ├── 01-roh.mp4  ·  01-fertig.mp4

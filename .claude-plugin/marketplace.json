@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "gta6-skill",
-      "description": "Elf Claude-Skills, um aus GTA-6-Streams Kurzclips für Clipping-Kampagnen zu machen: Kampagnen, Streams, Momente, Schnitt, Untertitel, Hook, Caption, Regel-Check, Trend-Radar, Postplan und Auszahlungs-Tracker.",
+      "description": "Elf Claude-Skills, um aus GTA-6-Streams Kurzclips für Clipping-Kampagnen zu machen: Kampagnen, Streams, Momente, Schnitt, Untertitel, Hook, Caption, Regel-Check, Trend-Radar, Kanal-Bauer und Auszahlungs-Tracker.",
       "source": "./",
       "category": "productivity",
       "homepage": "https://github.com/neubauerwilli/gta6-skill"

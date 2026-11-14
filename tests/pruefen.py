@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SKILLS = [
     "kampagnen-finder", "stream-finder", "momente-finder", "clip-schneider", "untertitel",
     "hook-schreiber", "caption-und-hashtags", "regel-check", "trend-radar",
-    "post-plan", "auszahlungs-tracker",
+    "kanal-bauer", "auszahlungs-tracker",
 ]
 # Skills, die etwas verschicken koennten: Regel "Ja" muss drinstehen.
 MIT_JA_REGEL = SKILLS
