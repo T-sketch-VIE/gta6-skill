@@ -12,6 +12,8 @@ argument-hint: "[Clip]"
 
 Ein abgelehnter Clip bringt nichts. Dieser Skill fängt ab, was die Kampagne ablehnen würde.
 
+Die Folgeaufrufe verwenden den Plugin-Namensraum `gta6-skill:`. Bei einzeln kopierten Skills entfällt dieser Namensraum.
+
 ## Grundregeln
 
 - **Nichts wird ohne Ja des Nutzers gepostet, hochgeladen oder eingereicht.** Du loggst dich nirgends ein

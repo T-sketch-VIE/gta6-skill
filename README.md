@@ -3,7 +3,9 @@
 Elf Claude-Skills auf Deutsch, die aus GTA-6-Streams Kurzclips machen und dich zu Clipping-Kampagnen
 bringen. GTA 6 erscheint am 19.11.2026 für PS5 und Xbox Series X|S. Die großen Streamer werden es tagelang
 streamen. Wer in dieser Zeit schnell die guten Momente findet, sauber schneidet und regelkonform einreicht,
-kann über Kampagnen Geld verdienen. Kostenlos, MIT, keine Anmeldung bei uns, kein API-Schlüssel.
+kann über Kampagnen Geld verdienen. Das Skill-Paket ist kostenlos und MIT-lizenziert. Ein nutzbarer
+Claude-Code-Zugang ist separat erforderlich und kann kostenpflichtig sein. Das Paket verlangt keinen
+eigenen API-Schlüssel; Claude Code braucht seine reguläre Anmeldung oder API-Abrechnung.
 
 Einer sucht laufende Kampagnen. Einer findet, wer GTA 6 gerade streamt. Einer holt aus einem VOD die
 stärksten Momente. Dann schneidet, betitelt und prüft das Paket den Clip. Und der Trend-Radar sagt dir, welcher
@@ -57,17 +59,9 @@ pip3 install faster-whisper
 
 Claude Code selbst: Anleitung unter https://docs.claude.com/en/docs/claude-code.
 
-## Einrichten
+## Einrichten in Claude Code
 
-Füge den Link zu diesem Repo in Claude ein und sag `Installier den Skill`:
-
-```
-https://github.com/neubauerwilli/gta6-skill
-
-Installier den Skill
-```
-
-Oder als Plugin in Claude Code:
+Öffne Claude Code in einem neuen Projektordner. Nutze dort diese beiden Befehle nacheinander:
 
 ```
 /plugin marketplace add neubauerwilli/gta6-skill
@@ -75,24 +69,51 @@ Oder als Plugin in Claude Code:
 ```
 
 Als Plugin bekommen die Skills einen Namensraum, sie heißen dann `/gta6-skill:kampagnen-finder` und so weiter.
-Wenn du einfach `/kampagnen-finder` willst, kopiere die Ordner:
+Prüfe im Plugin-Menü, dass `gta6-skill` aktiviert ist. Falls die Befehle noch fehlen, starte Claude Code neu.
+Im Terminal prüfst du die Installation mit `claude plugin list` und `claude plugin details gta6-skill`.
+
+Starte dann zum Beispiel:
+
+```text
+/gta6-skill:kampagnen-finder Ich bin in Österreich und möchte deutschsprachige YouTube Shorts erstellen.
+Suche aktuell zugängliche GTA-6-Clipping-Kampagnen. Prüfe Plattform, Erlaubnis, Vergütung und Restbudget
+an der Originalseite. Fehlen öffentliche Daten, markiere sie offen. Erfinde keine Kampagne.
+```
+
+Ohne freigegebenes Material kannst du mit `/gta6-skill:kanal-bauer` bereits Namen, Beschreibung und
+einen konkreten eigenen Kanalansatz planen. Vor dem Spielstart können passende Kampagnen oder VODs fehlen.
+
+### Alternative: einzelne Skill-Ordner
+
+Wenn du einfach `/kampagnen-finder` willst, kopiere die Ordner in ein neues Projekt. Bereits vorhandene
+gleichnamige Skills zuerst vergleichen, nicht ungeprüft überschreiben:
 
 ```bash
 git clone https://github.com/neubauerwilli/gta6-skill.git
-cp -r gta6-skill/skills/* ~/.claude/skills/
+mkdir -p .claude/skills
+cp -Rn gta6-skill/skills/* .claude/skills/
 ```
 
 Windows (PowerShell):
 
 ```powershell
 git clone https://github.com/neubauerwilli/gta6-skill.git
-Copy-Item -Recurse gta6-skill\skills\* "$env:USERPROFILE\.claude\skills\"
+New-Item -ItemType Directory -Force .claude/skills | Out-Null
+Get-ChildItem gta6-skill/skills -Directory | ForEach-Object {
+    $ziel = Join-Path .claude/skills $_.Name
+    if (Test-Path -LiteralPath $ziel) { throw "Skill schon vorhanden: $ziel" }
+    Copy-Item -LiteralPath $_.FullName -Destination $ziel -Recurse
+}
 ```
 
-Kein Claude Code? Füge eine einzelne `SKILL.md` oben in einen Chat ein, dann läuft sie als Modus. Websuche
-braucht einen Claude-Zugang mit Websuche.
+Kein Claude Code? Füge den Inhalt einer einzelnen `SKILL.md` als Arbeitsanweisung in einen Claude-Chat ein.
+Das installiert kein Plugin. Textaufgaben funktionieren dort mit dem vorhandenen Material; Webrecherche
+braucht Webzugriff. Lokalen Videoschnitt mit ffmpeg führt der normale Chat dadurch nicht aus.
 
 ## Die elf
+
+Die Tabelle zeigt die kurzen Namen. Bei der Plugin-Installation immer `gta6-skill:` voranstellen,
+zum Beispiel `/gta6-skill:trend-radar`.
 
 | Befehl | Rolle | Was er macht |
 | --- | --- | --- |
@@ -112,8 +133,8 @@ braucht einen Claude-Zugang mit Websuche.
 
 1. `/kampagnen-finder`: Du siehst, welche Kampagnen laufen und was sie verlangen. Du trittst selbst bei.
 2. `/stream-finder`: Er nennt die Streamer mit Kampagne, die gerade GTA 6 haben, mit Links.
-3. `/trend-radar`: Er meldet einen Moment ohne vorhandene Clips, mit Stream-Link und Zeitstempel.
-4. `/momente-finder`: Er zieht Untertitel aus dem VOD und listet die besten Stellen.
+3. `/momente-finder`: Er zieht Untertitel aus dem erlaubten VOD und listet die besten Stellen.
+4. `/trend-radar`: Er prüft diese Momente gegen aktuelle Suchen und meldet Kandidaten ohne gefundene Clips.
 5. `/clip-schneider`, dann `/untertitel`: Aus dem Moment wird ein 9:16-Clip mit Untertiteln.
 6. `/hook-schreiber` und `/caption-und-hashtags`: Du wählst den Hook, dazu kommen die Texte je Plattform.
 7. `/regel-check`: Der Clip geht gegen den Kampagnen-Brief. Erst bei `bereit` weiter.
@@ -136,6 +157,12 @@ gta6/
 
 - Der Trend-Radar sieht nur, was öffentlich sichtbar ist und was seine Suchen finden. Er sagt nicht voraus,
   was anzieht, und kann nicht beweisen, dass ein Moment noch frei ist.
+- Der Radar läuft auf Aufruf. Das Paket enthält keinen Hintergrunddienst und überwacht Streams nicht von selbst.
+  Nach deiner Auswahl führt er durch Schnitt, Untertitel und Prüfung. Einen fertigen Clip meldet er erst nach
+  echter Dateierstellung und Kontrolle. Ohne Wortzeiten gibt es keine nachgewiesenen Wort-für-Wort-Untertitel.
+- Der Kanal-Bauer erstellt Kanaltexte und einen Uploadplan. Er legt keinen YouTube-Kanal an und garantiert
+  weder Partnerprogramm-Aufnahme noch Einnahmen. YouTube vergütet berechtigte Aufrufe nach seinen Regeln,
+  nicht jeden Aufruf. Ein Streamer-Clip wird durch Schnitt und Untertitel allein nicht automatisch monetarisierbar.
 - Kampagnen, Sätze und Budgets ändern sich. Jeder Skill liest sie bei jedem Lauf neu bei der Quelle.
 - Seiten hinter einem Login kann Claude nicht lesen. Dann trägst du Regeln und Zahlen selbst ein.
 - Bei den Zahlen im Tracker steht, was du eingibst. Eine Auszahlung ist damit nicht zugesagt.
@@ -153,5 +180,15 @@ python3 tests/pruefen.py
 
 Prüft, dass alle elf Skills vorhanden sind, Name und Beschreibung stimmen, die Regeln drinstehen und keine
 Gedankenstriche im Text sind. Unter Windows oft `py` statt `python3`.
+
+Technischer Medien-Test mit eigenem synthetischem Material (benötigt ffmpeg und ffprobe):
+
+```bash
+python3 tests/test_media.py
+```
+
+Er erzeugt in einem temporären Ordner ein Testbild mit Ton, schneidet es proportional auf 1080x1920,
+brennt Testuntertitel ein und prüft Dateiformat, Dauer, Ton und die tatsächlich geänderten Bildpixel.
+Das ist kein Test von Streamer-Rechten, Live-Trends, Transkription oder Einnahmen.
 
 Von Willi Neubauer · Lizenz: [MIT](LICENSE)

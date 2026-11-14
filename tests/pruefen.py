@@ -47,11 +47,27 @@ extra = {p.parent.name for p in (ROOT / "skills").glob("*/SKILL.md")} - set(SKIL
 if extra:
     f(f"unerwartete Skills: {sorted(extra)}")
 
+manifeste = {}
 for datei in ["plugin.json", "marketplace.json"]:
     try:
-        json.loads((ROOT / ".claude-plugin" / datei).read_text(encoding="utf-8"))
+        manifeste[datei] = json.loads((ROOT / ".claude-plugin" / datei).read_text(encoding="utf-8"))
     except Exception as e:  # noqa: BLE001
         f(f"{datei}: {e}")
+
+if len(manifeste) == 2:
+    plugin = manifeste["plugin.json"]
+    marketplace = manifeste["marketplace.json"]
+    if plugin.get("name") != "gta6-skill" or marketplace.get("name") != "gta6-skill":
+        f("Installationsnamen weichen von gta6-skill ab")
+    if not re.fullmatch(r"\d+\.\d+\.\d+", plugin.get("version", "")):
+        f("Pluginversion fehlt oder ist keine numerische Semver")
+    entries = marketplace.get("plugins", [])
+    if len(entries) != 1 or entries[0].get("name") != plugin.get("name"):
+        f("Marketplace-Eintrag passt nicht zum Plugin")
+    else:
+        source = (ROOT / entries[0].get("source", "MISSING")).resolve()
+        if source != ROOT.resolve() or not (source / ".claude-plugin/plugin.json").is_file():
+            f("Marketplace-Quelle verweist nicht auf das vorhandene Plugin")
 
 for p in ROOT.rglob("*"):
     if not p.is_file() or ".git" in p.parts or p.suffix not in {".md", ".json", ".py"}:

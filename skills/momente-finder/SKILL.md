@@ -13,6 +13,8 @@ argument-hint: "[VOD-Link oder Datei]"
 
 Aus Stunden Stream die Minuten finden, die ein Clip werden können.
 
+Die Folgeaufrufe verwenden den Plugin-Namensraum `gta6-skill:`. Bei einzeln kopierten Skills entfällt dieser Namensraum.
+
 ## Grundregeln
 
 - **Nichts wird ohne Ja des Nutzers gepostet, hochgeladen oder eingereicht.** Du loggst dich nirgends ein
@@ -53,4 +55,4 @@ der Python-Aufruf oft `py` statt `python3`.
 |---|---|---|---|---|---|
 
    Die Stärke ist deine Einschätzung und so benannt. Sie sagt nichts über spätere Aufrufe.
-6. Sag, welche drei du zuerst schneiden würdest, und warum. Weiter mit `/clip-schneider`.
+6. Sag, welche drei du zuerst schneiden würdest, und warum. Weiter mit `/gta6-skill:clip-schneider`.

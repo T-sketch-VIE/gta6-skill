@@ -11,6 +11,8 @@ argument-hint: "[Streamer oder Plattform]"
 
 Ein Clip braucht Quellmaterial. Dieser Skill findet es, aber nur dort, wo eine Kampagne das Clippen abdeckt.
 
+Die Folgeaufrufe verwenden den Plugin-Namensraum `gta6-skill:`. Bei einzeln kopierten Skills entfällt dieser Namensraum.
+
 ## Grundregeln
 
 - **Nichts wird ohne Ja des Nutzers gepostet, hochgeladen oder eingereicht.** Du loggst dich nirgends ein
@@ -25,7 +27,7 @@ Ein Clip braucht Quellmaterial. Dieser Skill findet es, aber nur dort, wo eine K
 ## Ablauf
 
 1. Lies `gta6/kampagnen.md`, falls es sie gibt. Such zuerst Streams der Streamer, für die eine Kampagne läuft.
-   Gibt es keine, sag es und schlage `/kampagnen-finder` vor, bevor du weitersuchst.
+   Gibt es keine, sag es und schlage `/gta6-skill:kampagnen-finder` vor, bevor du weitersuchst.
 2. Suche per Websuche und auf den Plattformen selbst: `<Streamer> GTA 6 stream`, `GTA 6 live Twitch`,
    `GTA 6 VOD YouTube`, Kick-Kategorie GTA 6. Öffne die Seiten und prüfe: Läuft der Stream jetzt, oder ist es ein
    VOD? Ist es wirklich GTA 6 und nicht GTA 5 oder ein Trailer?
@@ -37,6 +39,6 @@ Ein Clip braucht Quellmaterial. Dieser Skill findet es, aber nur dort, wo eine K
    Zuschauerzahlen nennst du nur, wenn sie auf der Seite stehen, mit Uhrzeit des Abrufs. Sonst `nicht
    angegeben`.
 4. Weise darauf hin: VODs verschwinden je nach Plattform nach einigen Tagen oder Wochen. Wer clippen will,
-   sollte das VOD bald holen (`/momente-finder`).
+   sollte das VOD bald holen (`/gta6-skill:momente-finder`).
 
-Das Herunterladen übernimmt `/momente-finder` mit yt-dlp. Hier lädst du nichts.
+Das Herunterladen übernimmt `/gta6-skill:momente-finder` mit yt-dlp. Hier lädst du nichts.

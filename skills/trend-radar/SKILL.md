@@ -2,7 +2,7 @@
 name: trend-radar
 description: >-
   Der Trend-Radar. Beobachtet, welche GTA-6-Momente gerade auf TikTok, YouTube Shorts und
-  Reels anziehen, und meldet dir den Moment, den noch keiner geclippt hat, mit Stream-Link und
+  Reels anziehen, und meldet Kandidaten ohne gefundene Clips, mit Stream-Link und
   Zeitstempel. Nutze ihn, wenn der Nutzer sagt "was geht gerade", "welcher Moment ist frei",
   "Trend-Radar", "was hat noch keiner geclippt" oder "wonach suchen die Leute".
 argument-hint: "[Streamer oder Plattform]"
@@ -10,7 +10,9 @@ argument-hint: "[Streamer oder Plattform]"
 
 # trend-radar
 
-Der Höhepunkt des Pakets: nicht dem hinterherlaufen, was alle schon haben, sondern den Moment melden, der noch frei ist.
+Finde interessante Momente und prüfe, welche davon in deinen aktuellen Suchen noch nicht auftauchen.
+
+Die Folgeaufrufe verwenden den Plugin-Namensraum `gta6-skill:`. Bei einzeln kopierten Skills entfällt dieser Namensraum.
 
 ## Grundregeln
 
@@ -42,9 +44,16 @@ Der Höhepunkt des Pakets: nicht dem hinterherlaufen, was alle schon haben, sond
 
 Sag das dem Nutzer am Anfang jedes Laufs in einem Satz.
 
+Dieser Skill startet auf Aufruf. Er enthält keinen Hintergrunddienst und keine automatische Stream-Überwachung.
+Ein erneuter Abruf braucht einen erneuten Aufruf oder eine separat eingerichtete, vom Nutzer beauftragte
+Zeitplanung. Keine Behauptung, als Erster zu clippen. Ein einzelner Abruf belegt keinen Aufrufzuwachs.
+Bevor du einen konkreten Zeitplanungsbefehl empfiehlst, prüfe seine Verfügbarkeit in der tatsächlichen
+Claude-Umgebung. Ohne diese Prüfung bleibe bei einem erneuten manuellen Aufruf.
+
 ## Ablauf
 
-1. Lies `gta6/streams.md` und `gta6/momente.md`.
+1. Lies `gta6/streams.md` und `gta6/momente.md`. Fehlen sie, nutze zuerst Stream-Finder und Momente-Finder
+   oder frage nach einem erlaubten VOD mit Zeitstempeln. Ohne Zugriff keine Kandidaten erfinden.
 2. **Was zieht:** Suche je Plattform nach `GTA 6`, nach den Streamernamen und nach den Momenten (Ort,
    Mission, Ereignis, Zitat). Notiere zu jedem Treffer Link, Konto, Aufrufe laut Seite, Alter. Wiederhole nach
    einigen Stunden, wenn der Nutzer es will, und vergleiche. Aufrufe pro Stunde rechnest du nur aus zwei echten
@@ -58,12 +67,15 @@ Sag das dem Nutzer am Anfang jedes Laufs in einem Satz.
 
    Dazu eine Tabelle "Was gerade zieht" mit Link, Aufrufen laut Seite und Abrufzeit.
 5. Melde dem Nutzer den besten Kandidaten: Stream-Link, Zeitstempel, ein Satz Grund, die Einschränkung. Fehlt
-   die Kampagne dafür, sag es und schlage `/kampagnen-finder` vor. Geschnitten wird nur, wenn eine Kampagne
+   die Kampagne dafür, sag es und schlage `/gta6-skill:kampagnen-finder` vor. Geschnitten wird nur, wenn eine Kampagne
    oder Erlaubnis das Material abdeckt.
 
 6. **Fertiger Short:** Sagt der Nutzer Ja zu einem Kandidaten (und eine Kampagne oder Erlaubnis deckt ihn),
-   führst du direkt weiter: Abschnitt holen wie in `/momente-finder`, schneiden wie in `/clip-schneider`,
-   Untertitel wie in `/untertitel`, Hook wie in `/hook-schreiber`. Am Ende liegt ein fertiger Short in
-   `gta6/clips/`, den der Nutzer nur noch selbst veröffentlicht.
+   führst du direkt weiter: Abschnitt holen wie in `/gta6-skill:momente-finder`, schneiden wie in `/gta6-skill:clip-schneider`,
+   Untertitel wie in `/gta6-skill:untertitel`, Hook wie in `/gta6-skill:hook-schreiber`, Texte wie in `/gta6-skill:caption-und-hashtags`
+   und Prüfung wie in `/gta6-skill:regel-check`. Die gewählte Hook wird nur eingeblendet, wenn der Nutzer das möchte;
+   sonst ist sie eine separate Textdatei. Ein fertiger Short darf erst gemeldet werden, wenn die MP4
+   tatsächlich existiert, ffprobe und die visuelle Prüfung bestanden sind. Bei fehlendem Werkzeug oder
+   fehlender Erlaubnis nenne den offenen Schritt. Den Status `bereit` gibt es nur nach bestandenem Regel-Check.
 
-Weiter mit `/regel-check`.
+Weiter mit `/gta6-skill:regel-check`.

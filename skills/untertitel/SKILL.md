@@ -11,6 +11,8 @@ argument-hint: "[Clip-Datei, Sprache]"
 
 Die meisten schauen ohne Ton. Ohne Untertitel verlierst du sie in der ersten Sekunde.
 
+Die Folgeaufrufe verwenden den Plugin-Namensraum `gta6-skill:`. Bei einzeln kopierten Skills entfällt dieser Namensraum.
+
 ## Grundregeln
 
 - **Nichts wird ohne Ja des Nutzers gepostet, hochgeladen oder eingereicht.** Du loggst dich nirgends ein
@@ -29,14 +31,20 @@ Die meisten schauen ohne Ton. Ohne Untertitel verlierst du sie in der ersten Sek
    Sinn nicht verfälschen.
 2. Transkript mit Wortzeiten: `whisper` oder `faster-whisper` mit Wort-Zeitstempeln, falls installiert
    (`whisper clip.mp4 --word_timestamps True --output_format json`). Sonst die Untertitel aus yt-dlp
-   zuschneiden. Ist beides nicht da, sag es und schlage die Installation vor.
+   zuschneiden und alle Zeiten um den Clipstart auf null verschieben. Satzweise Untertitel sind keine
+   Wortzeiten: Fehlen Wortzeiten, keine angeblich synchronen Worthervorhebungen erfinden. Dann entweder
+   echte Wortausrichtung erzeugen oder normale Untertitel anbieten. Ist beides nicht da, sag es und
+   schlage die Installation vor.
 3. Mach daraus eine `.ass`-Datei mit einem bis drei Wörtern je Einblendung: Schrift Arial Black oder Impact,
    Größe 90 bis 110 bei 1080x1920, weiß mit schwarzem Rand von 6 bis 8, Position im unteren Mittelfeld mit etwa
    25 % Abstand von unten (über der Oberfläche der Plattform), das gesprochene Wort in Gelb.
 4. Prüfe die Wörter gegen das Transkript. Eigennamen und Schimpfwörter fragst du nach: Der Nutzer entscheidet,
    ob ein Schimpfwort stehen bleibt (Plattformen und Kampagnen sehen das unterschiedlich).
-5. Einbrennen: `ffmpeg -i gta6/clips/<nr>-roh.mp4 -vf "ass=<nr>.ass" -c:a copy <nr>-fertig.mp4`, aus dem
+5. Einbrennen: `ffmpeg -n -i <nr>-roh.mp4 -vf "ass=<nr>.ass" -c:v libx264 -pix_fmt yuv420p -c:a aac -movflags +faststart <nr>-fertig.mp4`, aus dem
    Ordner `gta6/clips/` heraus mit relativem Pfad. Unter Windows machen absolute Pfade mit `C:` im Filter Ärger.
-6. Sieh dir ein Standbild an: Nichts überlappt die Plattform-Oberfläche, jedes Wort ist lesbar.
+6. Prüfe Anfang, Mitte und Ende im Video: Wörter, Zeitversatz, Zeilenumbrüche und Lesbarkeit. Miss mit
+   ffprobe Bildgröße, Dauer und Tonspur. Lokale Positionierung ist eine Zuschnittsimulation; bestätige eine
+   tatsächlich freie Plattform-Oberfläche erst in der Vorschau der jeweiligen App. Ohne Sprachmodell oder
+   Wortzeiten keinen erfolgreich getesteten Transkriptionslauf behaupten.
 
-Weiter mit `/hook-schreiber` und `/regel-check`.
+Weiter mit `/gta6-skill:hook-schreiber` und `/gta6-skill:regel-check`.

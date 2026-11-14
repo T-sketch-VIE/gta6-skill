@@ -12,6 +12,8 @@ argument-hint: "[Clip, Aufrufe, Satz]"
 
 Ehrliche Zahlen, ohne Hoffnung mitzurechnen.
 
+Die Folgeaufrufe verwenden den Plugin-Namensraum `gta6-skill:`. Bei einzeln kopierten Skills entfällt dieser Namensraum.
+
 ## Grundregeln
 
 - **Nichts wird ohne Ja des Nutzers gepostet, hochgeladen oder eingereicht.** Du loggst dich nirgends ein
@@ -28,7 +30,7 @@ Ehrliche Zahlen, ohne Hoffnung mitzurechnen.
 1. Lege `gta6/tracker.csv` an, getrennt mit Semikolon:
 
 ```
-clip;kampagne;plattform;gepostet_am;aufrufe_gesamt;aufrufe_freigegeben;satz_je_1000;erwartet;ausgezahlt;status;stand_am
+clip;kampagne;plattform;gepostet_am;aufrufe_gesamt;aufrufe_freigegeben;satz_je_1000;waehrung;erwartet;ausgezahlt;status;stand_am
 ```
 
 2. Der Nutzer trägt ein, was er auf der Kampagnenseite sieht: Aufrufe, freigegebene Aufrufe, Satz, Status
@@ -37,7 +39,10 @@ clip;kampagne;plattform;gepostet_am;aufrufe_gesamt;aufrufe_freigegeben;satz_je_1
 3. Rechne nur aus vorhandenen Zahlen: `erwartet = aufrufe_freigegeben / 1000 * satz_je_1000`. Fehlt eines von
    beidem, steht in `erwartet` nichts. Berücksichtige, was die Kampagne angibt: Obergrenzen je Clip oder
    Kampagne, Mindestaufrufe, Restbudget. Stehen sie nicht da, frag nach.
-4. Zeige eine Zusammenfassung: Summe je Kampagne, Summe erwartet, Summe ausgezahlt, Zahl der abgelehnten
+4. Behalte bestehende Zeilen, ergänze oder aktualisiere nur die passenden Clips. Summiere Währungen getrennt,
+   rechne nicht ohne belegten Wechselkurs um. Negative Aufrufe oder Sätze und unklare Dezimaltrennzeichen
+   vor der Rechnung klären. Verwende für Geld Dezimalrechnung und runde erst das Ergebnis auf Cent.
+   Zeige eine Zusammenfassung: Summe je Kampagne und Währung, Summe erwartet, Summe ausgezahlt, Zahl der abgelehnten
    Clips, und die Lücke zwischen erwartet und ausgezahlt. Benenne sie als Stand vom Datum der Eingabe.
 5. Sag ehrlich: Das sind Erwartungen aus den Angaben der Kampagne, keine Zusage. Budgets sind begrenzt, Clips
    können abgelehnt und Aufrufe aberkannt werden. Ob sich der Aufwand lohnt, rechnet der Nutzer mit seiner
@@ -45,4 +50,4 @@ clip;kampagne;plattform;gepostet_am;aufrufe_gesamt;aufrufe_freigegeben;satz_je_1
    Nutzer bei Bedarf selbst.
 6. Du reichst nichts ein und holst keine Zahlen mit Zugangsdaten des Nutzers. Die Zahlen kommen vom Nutzer.
 
-Läuft ein Clip schlecht, geh zurück zu `/hook-schreiber` oder frag `/trend-radar` nach dem nächsten freien Moment.
+Läuft ein Clip schlecht, geh zurück zu `/gta6-skill:hook-schreiber` oder frag `/gta6-skill:trend-radar` nach dem nächsten freien Moment.

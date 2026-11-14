@@ -12,6 +12,8 @@ argument-hint: "[Clip, Plattformen]"
 
 Das Drumherum, das der Clip zum Rausgehen braucht.
 
+Die Folgeaufrufe verwenden den Plugin-Namensraum `gta6-skill:`. Bei einzeln kopierten Skills entfällt dieser Namensraum.
+
 ## Grundregeln
 
 - **Nichts wird ohne Ja des Nutzers gepostet, hochgeladen oder eingereicht.** Du loggst dich nirgends ein
@@ -39,4 +41,4 @@ Das Drumherum, das der Clip zum Rausgehen braucht.
 5. Der Streamer wird genannt und erscheint nicht als Autor des Clips. Gib Quelle oder Credit an, wenn die
    Kampagne es verlangt.
 
-Schreibe alles in `gta6/clips/<nr>-texte.md`. Weiter mit `/regel-check`.
+Schreibe alles in `gta6/clips/<nr>-texte.md`. Weiter mit `/gta6-skill:regel-check`.

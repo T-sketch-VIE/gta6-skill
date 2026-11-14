@@ -10,7 +10,9 @@ argument-hint: "[Streamer oder Plattform]"
 
 # kampagnen-finder
 
-Geld gibt es nur über eine Kampagne. Dieser Skill sucht sie, bevor irgendein Clip entsteht.
+Dieser Skill sucht eine passende Clipping-Kampagne, bevor dafür ein Clip entsteht.
+
+Die Folgeaufrufe verwenden den Plugin-Namensraum `gta6-skill:`. Bei einzeln kopierten Skills entfällt dieser Namensraum.
 
 ## Grundregeln
 
@@ -49,4 +51,4 @@ https://contentrewards.com/blog/get-paid-clip-streamers
 4. Sag zum Schluss, welche Kampagnen zum Nutzer passen (Plattform, Streamer, Regeln) und wie ein Beitritt
    abläuft. Beitreten tut der Nutzer selbst.
 
-Weiter mit `/stream-finder`. Die Regeln jeder Kampagne prüft `/regel-check`.
+Weiter mit `/gta6-skill:stream-finder`. Die Regeln jeder Kampagne prüft `/gta6-skill:regel-check`.

@@ -14,6 +14,8 @@ argument-hint: "[Plattformen, Konten, Clips, Zeitraum]"
 Ein eigener Kanal, auf dem deine GTA-6-Clips laufen, und ein Plan, der Reichweite sucht und die Regeln einhält.
 Den Kanal anlegen, einloggen und hochladen macht der Nutzer selbst.
 
+Die Folgeaufrufe verwenden den Plugin-Namensraum `gta6-skill:`. Bei einzeln kopierten Skills entfällt dieser Namensraum.
+
 ## Grundregeln
 
 - **Nichts wird ohne Ja des Nutzers gepostet, hochgeladen oder eingereicht.** Du loggst dich nirgends ein
@@ -41,8 +43,13 @@ Den Kanal anlegen, einloggen und hochladen macht der Nutzer selbst.
 4. Geld über YouTube: Shorts können über das YouTube-Partnerprogramm Geld bringen, sobald der Kanal die
    Voraussetzungen erfüllt. Nenne die aktuellen Voraussetzungen nur mit Quelle (offizielle YouTube-Hilfe,
    Abrufdatum). Weise in einem Satz darauf hin, dass reine Übernahmen fremder Streams ohne eigenen Anteil als
-   wiederverwendete Inhalte von der Bezahlung ausgeschlossen werden können, darum eigener Schnitt, Hook und
-   Untertitel.
+   wiederverwendete Inhalte von der Bezahlung ausgeschlossen werden können. Schnitt, Hook, Hochformat und
+   Untertitel allein sichern keine Monetarisierung; nötig ist ein erkennbarer eigener Beitrag, etwa eine
+   eigene Einordnung oder Erzählung. Erlaubnis des Streamers und YouTube-Monetarisierung sind getrennte Fragen.
+   Prüfe [YouTubes Monetarisierungsregeln](https://support.google.com/youtube/answer/1311392) und die
+   [Shorts-Regeln](https://support.google.com/youtube/answer/12504220). YouTube zahlt nicht für jeden Aufruf:
+   Nur berechtigte Aufrufe nach Aufnahme und Annahme des Shorts-Moduls zählen nach den geltenden Regeln.
+   Prüfe einen zusätzlichen Kampagnenverdienst getrennt gegen den konkreten Brief, keine doppelte Auszahlung versprechen.
 
 ## Teil 2: Uploadplan
 
@@ -52,7 +59,7 @@ Den Kanal anlegen, einloggen und hochladen macht der Nutzer selbst.
    Kampagnen schließen doppelte Einreichungen desselben Clips oder Kontenfarmen aus. Was nicht eindeutig
    dasteht, markierst du mit `unklar, nachfragen`.
 3. Baue den Plan nach diesen Grundsätzen:
-   - Jeder Clip bekommt je Plattform einen eigenen Text (`/caption-und-hashtags`).
+   - Jeder Clip bekommt je Plattform einen eigenen Text (`/gta6-skill:caption-und-hashtags`).
    - Derselbe Clip nicht mehrfach auf demselben Konto und nicht in Serie auf mehreren Konten desselben
      Nutzers, wenn Kampagne oder Plattform das untersagt.
    - Früh dran sein zählt: frische Momente zuerst, ältere danach.
@@ -69,4 +76,4 @@ Den Kanal anlegen, einloggen und hochladen macht der Nutzer selbst.
 5. Du postest nichts und stellst nichts in einen Zeitplan, bevor der Nutzer Ja sagt. Auch dann trägt der
    Nutzer selbst ein oder ruft ein Werkzeug auf, das er kennt.
 
-Weiter mit `/auszahlungs-tracker`.
+Weiter mit `/gta6-skill:auszahlungs-tracker`.

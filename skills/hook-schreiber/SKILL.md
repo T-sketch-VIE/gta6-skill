@@ -11,6 +11,8 @@ argument-hint: "[Clip oder Moment]"
 
 Die ersten zwei Sekunden entscheiden, ob jemand weiterschaut.
 
+Die Folgeaufrufe verwenden den Plugin-Namensraum `gta6-skill:`. Bei einzeln kopierten Skills entfällt dieser Namensraum.
+
 ## Grundregeln
 
 - **Nichts wird ohne Ja des Nutzers gepostet, hochgeladen oder eingereicht.** Du loggst dich nirgends ein
@@ -36,4 +38,4 @@ Die ersten zwei Sekunden entscheiden, ob jemand weiterschaut.
 4. Gib zu jedem Hook eine Zeile Begründung und sag, welcher dein Favorit ist.
 5. Der Nutzer wählt. Du änderst einen gewählten Hook nicht mehr.
 
-Speichere die Auswahl in `gta6/clips/<nr>-hook.md`. Weiter mit `/caption-und-hashtags`.
+Speichere die Auswahl in `gta6/clips/<nr>-hook.md`. Weiter mit `/gta6-skill:caption-und-hashtags`.

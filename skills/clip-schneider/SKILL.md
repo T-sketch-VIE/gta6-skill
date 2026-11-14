@@ -12,6 +12,8 @@ argument-hint: "[Nr aus momente.md oder Zeitstempel]"
 
 Aus einem Moment wird ein Hochformat-Clip.
 
+Die Folgeaufrufe verwenden den Plugin-Namensraum `gta6-skill:`. Bei einzeln kopierten Skills entfällt dieser Namensraum.
+
 ## Grundregeln
 
 - **Nichts wird ohne Ja des Nutzers gepostet, hochgeladen oder eingereicht.** Du loggst dich nirgends ein
@@ -40,12 +42,14 @@ Aus einem Moment wird ein Hochformat-Clip.
      Kamera im Quellbild sieht Claude am Standbild (`ffmpeg -ss 5 -i quelle -frames:v 1 stand.png`). Frag den
      Nutzer, wenn die Kamera nicht eindeutig ist.
 4. Beispiel für Gesicht oben (Kamera links oben in einem 1920x1080-Quellbild, Werte nach Standbild anpassen):
-   `ffmpeg -i quelle.mp4 -filter_complex "[0:v]crop=480:270:0:0,scale=1080:608[cam];[0:v]crop=608:1080:656:0,scale=1080:1312[spiel];[cam][spiel]vstack" -c:a copy -t 45 out.mp4`.
+   `ffmpeg -n -i quelle.mp4 -filter_complex "[0:v]crop=480:270:0:0,scale=1080:608:force_original_aspect_ratio=increase,crop=1080:608,setsar=1[cam];[0:v]scale=1080:1312:force_original_aspect_ratio=increase,crop=1080:1312,setsar=1[spiel];[cam][spiel]vstack[v]" -map "[v]" -map "0:a?" -c:v libx264 -pix_fmt yuv420p -c:a aac -movflags +faststart -t 45 out.mp4`.
    Bau den Befehl immer aus dem echten Standbild, nicht aus diesem Beispiel. Das Ergebnis muss 1080x1920 sein,
-   rechne die Höhen so, dass sie zusammen 1920 ergeben.
+   rechne die Höhen so, dass sie zusammen 1920 ergeben. Seitenverhältnisse erhalten: proportional skalieren
+   und danach beschneiden, niemals das Spiel auf ein anderes Verhältnis strecken. Prüfe vor dem Lauf,
+   dass der Ausschnitt wichtige Spielflächen enthält. Bestehende Dateien nicht überschreiben.
 5. Ausgabe nach `gta6/clips/<nr>-roh.mp4`. Sieh dir ein Standbild an und prüf Bildformat (1080x1920),
    Länge und Ton mit `ffprobe`. Sag dem Nutzer, was du geprüft hast.
 6. Kein Wasserzeichen und kein fremdes Logo einbauen, außer die Kampagne verlangt eines. Der Schnitt darf
    dem Streamer nichts in den Mund legen, was er nicht gesagt hat.
 
-Weiter mit `/untertitel`.
+Weiter mit `/gta6-skill:untertitel`.
