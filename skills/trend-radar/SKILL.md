@@ -61,4 +61,9 @@ Sag das dem Nutzer am Anfang jedes Laufs in einem Satz.
    die Kampagne dafür, sag es und schlage `/kampagnen-finder` vor. Geschnitten wird nur, wenn eine Kampagne
    oder Erlaubnis das Material abdeckt.
 
-Weiter mit `/clip-schneider`.
+6. **Fertiger Short:** Sagt der Nutzer Ja zu einem Kandidaten (und eine Kampagne oder Erlaubnis deckt ihn),
+   führst du direkt weiter: Abschnitt holen wie in `/momente-finder`, schneiden wie in `/clip-schneider`,
+   Untertitel wie in `/untertitel`, Hook wie in `/hook-schreiber`. Am Ende liegt ein fertiger Short in
+   `gta6/clips/`, den der Nutzer nur noch selbst veröffentlicht.
+
+Weiter mit `/regel-check`.

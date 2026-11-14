@@ -35,7 +35,10 @@ Den Kanal anlegen, einloggen und hochladen macht der Nutzer selbst.
    - Banner-Text und eine Idee fürs Profilbild, die der Nutzer selbst gestaltet oder fotografiert,
    - drei Playlists (zum Beispiel nach Streamer, nach Art des Moments, "Beste der Woche"),
    - eine Checkliste zum Anlegen: Kanal erstellen, Handle setzen, Beschreibung, Banner, Profilbild, erster Upload.
-3. Geld über YouTube: Shorts können über das YouTube-Partnerprogramm Geld bringen, sobald der Kanal die
+3. **Schnell zu AdSense:** Schreib einen Plan, wie der Kanal die aktuellen Schwellen des YouTube-Partnerprogramms
+   für Shorts erreicht (Abonnenten und Shorts-Aufrufe laut offizieller YouTube-Hilfe, mit Link und Abrufdatum):
+   wie viele Shorts pro Tag, welche Momente zuerst, wann der Antrag gestellt wird. Keine Zusage, wann es klappt.
+4. Geld über YouTube: Shorts können über das YouTube-Partnerprogramm Geld bringen, sobald der Kanal die
    Voraussetzungen erfüllt. Nenne die aktuellen Voraussetzungen nur mit Quelle (offizielle YouTube-Hilfe,
    Abrufdatum). Weise in einem Satz darauf hin, dass reine Übernahmen fremder Streams ohne eigenen Anteil als
    wiederverwendete Inhalte von der Bezahlung ausgeschlossen werden können, darum eigener Schnitt, Hook und
